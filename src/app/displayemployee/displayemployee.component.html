@@ -1,0 +1,77 @@
+
+
+
+<div  style="height: 100%;">
+    <div class="container"style="height: 100%;">
+        <br>
+        <div class ="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                <button type="button" class="btn btn-outline-primary" (click)="onAddEmployeeClick()">Add Employee</button>
+    
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                <button type="button" class="btn btn-outline-primary" (click)="onRemoveEmployees()">Remove Employees</button>
+    
+            </div>
+        </div>
+        <br>
+        <div class="testbox">
+            <div class="table-responsive">
+    
+                <table class="table">
+                  <thead class=" text-primary">
+                      <th width="18%"  class="text-center blue-link-heading">
+                        Name
+                      </th>
+                      <th width="15%" class="text-center blue-link-heading ">
+                        Address
+                     </th>
+                      <th width="15%" class="text-center blue-link-heading">
+                        Date of birth
+                      </th>
+                      <th width="10%" class="text-center blue-link-heading">
+                        Role
+                      </th>
+                      <th width="10%" class="text-center blue-link-heading">
+                        Gender
+                      </th>
+                      <th width="20%" class="text-center blue-link-heading">
+                        Phone
+                      </th>
+                  </thead>
+                   <tr  *ngFor="let employee of employeesList;let i = index;" >
+            
+                    <td width="5%" class="text-center"  >
+            
+                       {{employeesList[i].name}}
+                    </td>
+                   <td width="15%" class="text-center">
+                     {{employeesList[i].address}}
+            
+            
+                   </td>
+                   <td width="15%" class="text-center">
+                     {{employeesList[i].dob}}
+            
+            
+                   </td>
+                   <td  width="20%" class="text-center">
+                    {{employeesList[i].role}}
+                   </td>
+                   <td  width="10%" class="text-center">
+                   {{employeesList[i].gender}}
+                   </td>
+                   <td  width="50%" class="text-center" *ngFor="let phn of employeesList[i].phone;let x = index;">
+                    {{employeesList[i].phone[x].phone}},
+                    </td>
+            
+            
+            
+            
+                   </tr>
+             </table>
+              </div>
+        </div>
+        </div>
+</div>
+

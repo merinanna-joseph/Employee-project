@@ -1,0 +1,94 @@
+
+<div class="container">
+    <div class="testbox">
+        <form [formGroup]="employeeForm">
+          <div class="banner">
+            <h1>CREATE EMPLOYEE</h1>
+          </div>
+          <br/>
+          <br/>
+          <div class="colums">
+            <div class="item">
+              <label for="name">Name<span>*</span></label>
+              <input   class="form-control" type="text" formControlName="name"  
+                    [ngClass]="{ 'is-invalid': submitted && empfun.name.errors }"required>
+                    <div *ngIf="submitted && empfun.name.errors" class="invalid-feedback">
+                        <div *ngIf="empfun.name.errors.required">Name required</div>
+                      </div>
+            </div>
+            <div class="item">
+              <label for="eaddress">Address<span>*</span></label>
+              <textarea class="form-control" rows="3" formControlName="address"
+                    [ngClass]="{ 'is-invalid': submitted && empfun.address.errors }" required></textarea>
+                    <div *ngIf="submitted && empfun.address.errors" class="invalid-feedback">
+                        <div *ngIf="empfun.address.errors.required">Address required</div>
+                      </div>
+            </div>
+            <div class="item">
+                <label for="dob">DOB<span>*</span></label>
+                <input   class="form-control" type="date" formControlName="dob"
+                [ngClass]="{ 'is-invalid': submitted && empfun.dob.errors }" required>
+                <div *ngIf="submitted && empfun.dob.errors" class="invalid-feedback">
+                    <div *ngIf="empfun.dob.errors.required">Date of birth required</div>
+                  </div>            
+              </div>
+            
+            
+            <div class="item">
+              <label for="role">Role<span>*</span></label>
+              <select class="form-control"
+              formControlName="role"
+             
+             [ngClass]="{ 'is-invalid': submitted && empfun.role.errors }" required>
+              <option value='' selected="true">--Select Role--</option>
+              <option *ngFor="let x of roles" value="{{x}}">{{x}}</option>
+             </select>
+               <div *ngIf="submitted && empfun.role.errors" class="invalid-feedback">
+                 <div *ngIf="empfun.role.errors.required">Role required</div>
+               </div>            
+            </div>
+            <div class="item">
+                <label for="phone">Phone<span>*</span></label>&nbsp;<button  class="btn btn-outline-primary"  (click)="addItem()">Add</button>
+                <div formArrayName="phone"
+                *ngFor="let phn of employeeForm.get('phone').controls; let i = index;">
+                <div [formGroupName]="i">
+                    <input formControlName="phone"  [ngClass]="{ 'is-invalid': submitted && empfun.phone.errors }" placeholder="Phone number"  required>
+                    <div *ngIf="!phonenotadded" >
+                    
+                        <div style="color: red;font-size:small">Phone required</div>
+                    </div>
+                </div>
+                </div>              
+            </div>
+            
+            
+
+            
+          </div>
+          <div class="row">
+            <div class="item">
+                <label for="gender">Gender<span>*</span></label>
+            </div>
+
+            <span class="col-md-12 col-lg-12 col-sm-12">
+            <input type="radio" [ngClass]="{ 'is-invalid': submitted && empfun.gender.errors }"
+                               value="Female" formControlName="gender"> &nbsp;&nbsp;Female&nbsp;&nbsp;&nbsp;&nbsp; 
+                <input type="radio"  [ngClass]="{ 'is-invalid': submitted && empfun.gender.errors }"
+                               value="Male" formControlName="gender">&nbsp;&nbsp; Male
+                               <div *ngIf="submitted && empfun.gender.errors" class="invalid-feedback">
+                                <div *ngIf="empfun.gender.errors.required" style="color: red;font-size:small">Gender required</div>
+                              </div>
+                
+            </span>
+            
+              
+        </div>
+        <div class="btn-block">
+            <button type="button" class="btn btn-outline-primary" (click)="onEmployeeSave()">Submit</button>&nbsp;
+            <button type="button" class="btn btn-outline-secondary" (click)="onCancelClick()">Cancel</button>
+
+          </div>
+        </form>
+      </div>    
+   
+</div>
